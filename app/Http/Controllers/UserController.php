@@ -20,7 +20,8 @@ class UserController extends Controller
         //     ['id' => 3, 'nama' => 'Siti', 'email' => 'siti@gmail.com']
         // ];
 
-        $senarai_users = DB::table('users')->get();
+        // $senarai_users = DB::table('users')->get();
+        $senarai_users = DB::table('users')->paginate(5);
 
         return view('theme_user/senarai', compact('senarai_users'));
     }

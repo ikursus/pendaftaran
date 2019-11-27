@@ -40,6 +40,7 @@
 
 </table>
 
+{{ $senarai_users->links() }}
 
 <p class="text-right">
 <a href="/users/create" class="btn btn-primary btn-sm">
