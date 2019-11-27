@@ -49,9 +49,18 @@ class UserController extends Controller
             'password' => 'required|min:3|confirmed'
         ]);
 
-        $data = $request->all();
-
-        return $data;
+        // $data = $request->all();
+        $data = $request->only([
+            'name',
+            'email',
+            'role'
+        ]);
+        // Encrypt Password dan kemudian attach kepada $data
+        $data['password'] = bcrypt($request->input('password'));
+        // Simpan $data ke dalam DB
+        DB::table('users')->insert($data);
+        // Redirect response ke senarai user
+        return redirect('/users');
     }
 
     /**
