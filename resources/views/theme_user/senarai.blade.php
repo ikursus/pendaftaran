@@ -2,9 +2,15 @@
 
 @section('content')
 
-<a href="/users/create" class="btn btn-primary">
-TAMBAH USER
-</a>
+<div class="container-fluid">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('Senarai Users') }}</div>
+
+                <div class="card-body">
+
+<p><a href="/users/create" class="btn btn-primary btn-sm">TAMBAH USER</a></p>
 
 <table class="table">
 
@@ -26,6 +32,7 @@ TAMBAH USER
             <a href="/users/{{ $user['id'] }}/edit" class="btn btn-warning btn-sm">
             EDIT
             </a> 
+            <button type="" class="btn btn-danger btn-sm">DELETE</button>
         </td>
     </tr>
     @endforeach
@@ -33,5 +40,10 @@ TAMBAH USER
 </tbody>
 
 <table>
+</div>
+            </div>
+        </div>
+    </div>
+</div>
 
 @endsection

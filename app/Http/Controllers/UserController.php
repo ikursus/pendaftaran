@@ -28,7 +28,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('theme_user/create', compact('senarai_users'));
     }
 
     /**
@@ -39,7 +39,11 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|min:3|confirmed'
+        ]);
     }
 
     /**
