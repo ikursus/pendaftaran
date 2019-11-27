@@ -83,7 +83,10 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        return view('theme_user/edit');
+        // Dapatkan rekod user berdasarkan ID yang dibekalkan
+        $user = DB::table('users')->where('id', '=', $id)->first();
+
+        return view('theme_user/edit', compact('user'));
     }
 
     /**
@@ -98,12 +101,25 @@ class UserController extends Controller
         $request->validate([
             'name' => 'required',
             'email' => 'required|email',
-            'password' => 'required|min:3|confirmed'
+            'role' => 'required|in:admin,staff'
         ]);
 
-        $data = $request->all();
-
-        return $data;
+        // $data = $request->all();
+        $data = $request->only([
+            'name',
+            'email',
+            'role'
+        ]);
+        // Encrypt Password dan kemudian attach kepada $data jika ruangan tidak kosong
+        if (!empty($request->input('password')))
+        {
+            $data['password'] = bcrypt($request->input('password'));
+        }
+        
+        // Simpan $data ke dalam DB
+        DB::table('users')->where('id', '=', $id)->update($data);
+        // Redirect response ke senarai user
+        return redirect('/users');
     }
 
     /**
