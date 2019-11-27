@@ -44,6 +44,10 @@ class UserController extends Controller
             'email' => 'required|email',
             'password' => 'required|min:3|confirmed'
         ]);
+
+        $data = $request->all();
+
+        return $data;
     }
 
     /**
@@ -65,7 +69,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('theme_user/edit', compact('senarai_users'));
     }
 
     /**
@@ -77,7 +81,15 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|min:3|confirmed'
+        ]);
+
+        $data = $request->all();
+
+        return $data;
     }
 
     /**

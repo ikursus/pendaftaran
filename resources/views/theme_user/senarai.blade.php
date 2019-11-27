@@ -32,7 +32,7 @@
             <a href="/users/{{ $user['id'] }}/edit" class="btn btn-warning btn-sm">
             EDIT
             </a> 
-            <button type="" class="btn btn-danger btn-sm">DELETE</button>
+            <button type="button" class="btn btn-danger btn-sm">DELETE</button>
         </td>
     </tr>
     @endforeach
