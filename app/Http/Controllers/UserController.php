@@ -13,7 +13,12 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        $senarai_users = [
+            ['id' => 1, 'nama' => 'Ali', 'email' => 'ali@gmail.com'],
+            ['id' => 2, 'nama' => 'Abu', 'email' => 'abu@gmail.com'],
+            ['id' => 3, 'nama' => 'Siti', 'email' => 'siti@gmail.com']
+        ];
+        return view('theme_user/senarai', compact('senarai_users'));
     }
 
     /**
