@@ -10,7 +10,6 @@
 
                 <div class="card-body">
 
-<p><a href="/users/create" class="btn btn-primary btn-sm">TAMBAH USER</a></p>
 
 <table class="table">
 
@@ -26,10 +25,10 @@
 
     @foreach ($senarai_users as $user)
     <tr>
-        <td>{{ $user['nama'] }}</td>
-        <td>{{ $user['email'] }}</td>
-        <td>
-            <a href="/users/{{ $user['id'] }}/edit" class="btn btn-warning btn-sm">
+        <td>{{ $user->name }}</td>
+        <td>{{ $user->email }}</td>
+        <td class="text-center">
+            <a href="/users/{{ $user->id }}/edit" class="btn btn-warning btn-sm">
             EDIT
             </a> 
             <button type="button" class="btn btn-danger btn-sm">DELETE</button>
@@ -39,7 +38,14 @@
 
 </tbody>
 
-<table>
+</table>
+
+
+<p class="text-right">
+<a href="/users/create" class="btn btn-primary btn-sm">
+TAMBAH USER</a>
+</p>
+
 </div>
             </div>
         </div>

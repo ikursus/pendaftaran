@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
 
 class UserController extends Controller
 {
@@ -13,11 +14,14 @@ class UserController extends Controller
      */
     public function index()
     {
-        $senarai_users = [
-            ['id' => 1, 'nama' => 'Ali', 'email' => 'ali@gmail.com'],
-            ['id' => 2, 'nama' => 'Abu', 'email' => 'abu@gmail.com'],
-            ['id' => 3, 'nama' => 'Siti', 'email' => 'siti@gmail.com']
-        ];
+        // $senarai_users = [
+        //     ['id' => 1, 'nama' => 'Ali', 'email' => 'ali@gmail.com'],
+        //     ['id' => 2, 'nama' => 'Abu', 'email' => 'abu@gmail.com'],
+        //     ['id' => 3, 'nama' => 'Siti', 'email' => 'siti@gmail.com']
+        // ];
+
+        $senarai_users = DB::table('users')->get();
+
         return view('theme_user/senarai', compact('senarai_users'));
     }
 
@@ -69,7 +73,7 @@ class UserController extends Controller
      */
     public function edit($id)
     {
-        return view('theme_user/edit', compact('senarai_users'));
+        return view('theme_user/edit');
     }
 
     /**
