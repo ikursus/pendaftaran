@@ -1,4 +1,8 @@
-@extends('layouts/app')
+@extends('induk')
+
+@section('content_atas')
+<h1 class="masthead-heading mb-0">Hubungi Kami</h1>
+@endsection
 
 @section('content')
 <div class="container"><!--template login-->
