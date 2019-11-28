@@ -23,6 +23,7 @@ class User extends Authenticatable
         'email',
         'role',
         'password',
+        'faculty_id'
     ];
 
     /**
@@ -57,5 +58,10 @@ class User extends Authenticatable
     public function getEmailAttribute($value)
     {
         return strtoupper($value);
+    }
+
+    public function faculty()
+    {
+        return $this->belongsTo(Faculty::class, 'faculty_id', 'id');
     }
 }

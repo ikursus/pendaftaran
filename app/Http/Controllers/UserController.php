@@ -23,7 +23,10 @@ class UserController extends Controller
         // ];
 
         // $senarai_users = DB::table('users')->get();
-        // $senarai_users = DB::table('users')->paginate(5);
+        // $senarai_users = DB::table('users')
+        // ->join('faculty', 'users.faculty_id', '=', 'faculty.id')
+        // ->select('users.*', 'faculty.name as faculty_name')
+        // ->paginate(5);
         $senarai_users = User::orderBy('id', 'desc')->paginate(5);
 
         return view('theme_user/senarai', compact('senarai_users'));
@@ -94,7 +97,9 @@ class UserController extends Controller
         // $user = DB::table('users')->where('id', '=', $id)->first();
         $user = User::find($id);
 
-        return view('theme_user/edit', compact('user'));
+        $senarai_faculty = Faculty::select('id', 'name')->get();
+
+        return view('theme_user/edit', compact('user', 'senarai_faculty'));
     }
 
     /**

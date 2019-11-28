@@ -17,6 +17,7 @@
     <tr>
         <th>NAMA</th>
         <th>EMAIL</th>
+        <th>FAKULTY</th>
         <th>TINDAKAN</th>
     </tr>
 </thead>
@@ -27,6 +28,7 @@
     <tr>
         <td>{{ $user->name }}</td>
         <td>{{ $user->email }}</td>
+        <td>{{ $user->faculty->name ?? "TIADA REKOD" }}</td>
         <td class="text-center">
             <a href="/users/{{ $user->id }}/edit" class="btn btn-warning btn-sm">
             EDIT
