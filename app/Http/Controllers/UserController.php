@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use App\User;
+use App\Faculty;
 
 class UserController extends Controller
 {
@@ -35,7 +36,10 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('theme_user/create');
+        // Senarai faculty untuk dropdown
+        $senarai_faculty = Faculty::select('id', 'name')->get();
+
+        return view('theme_user/create', compact('senarai_faculty'));
     }
 
     /**

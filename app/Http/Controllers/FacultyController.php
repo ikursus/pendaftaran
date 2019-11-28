@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use App\Faculty;
 
 class FacultyController extends Controller
 {
@@ -14,7 +15,8 @@ class FacultyController extends Controller
      */
     public function index()
     {
-        $senarai_faculty = DB::table('faculty')->paginate(5);
+        // $senarai_faculty = DB::table('faculty')->paginate(5);
+        $senarai_faculty = Faculty::paginate(5);
 
         return view('theme_faculty/senarai', compact('senarai_faculty'));
     }
