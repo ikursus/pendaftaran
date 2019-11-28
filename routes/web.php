@@ -8,10 +8,18 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-// Route papar senarai user
+// Route pengurusan users
 Route::get('users', 'UserController@index');
 Route::get('users/create', 'UserController@create');
 Route::post('users/create', 'UserController@store');
 Route::get('users/{id}/edit', 'UserController@edit');
 Route::patch('users/{id}/edit', 'UserController@update');
 Route::delete('users/{id}', 'UserController@destroy');
+
+// Route pengurusan faculty
+Route::get('faculty', 'FacultyController@index');
+Route::get('faculty/create', 'FacultyController@create');
+Route::post('faculty/create', 'FacultyController@store');
+Route::get('faculty/{id}/edit', 'FacultyController@edit');
+Route::patch('faculty/{id}/edit', 'FacultyController@update');
+Route::delete('faculty/{id}', 'FacultyController@destroy');
