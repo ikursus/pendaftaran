@@ -33,7 +33,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view('theme_user/create', compact('senarai_users'));
+        return view('theme_user/create');
     }
 
     /**
@@ -130,6 +130,9 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        DB::table('users')->where('id', '=', $id)->delete();
+
+        // Redirect response ke senarai user
+        return redirect('/users');
     }
 }
