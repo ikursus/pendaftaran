@@ -23,3 +23,5 @@ Route::post('faculty/create', 'FacultyController@store');
 Route::get('faculty/{id}/edit', 'FacultyController@edit');
 Route::patch('faculty/{id}/edit', 'FacultyController@update');
 Route::delete('faculty/{id}', 'FacultyController@destroy');
+
+// Route::resource('faculty', 'FacultyController');

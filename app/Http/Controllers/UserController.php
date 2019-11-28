@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use App\User;
 
 class UserController extends Controller
 {
@@ -21,7 +22,8 @@ class UserController extends Controller
         // ];
 
         // $senarai_users = DB::table('users')->get();
-        $senarai_users = DB::table('users')->paginate(5);
+        // $senarai_users = DB::table('users')->paginate(5);
+        $senarai_users = User::paginate(5);
 
         return view('theme_user/senarai', compact('senarai_users'));
     }
@@ -50,16 +52,17 @@ class UserController extends Controller
             'password' => 'required|min:3|confirmed'
         ]);
 
-        // $data = $request->all();
-        $data = $request->only([
-            'name',
-            'email',
-            'role'
-        ]);
+        $data = $request->all();
+        // $data = $request->only([
+        //     'name',
+        //     'email',
+        //     'role'
+        // ]);
         // Encrypt Password dan kemudian attach kepada $data
-        $data['password'] = bcrypt($request->input('password'));
+        // $data['password'] = bcrypt($request->input('password'));
         // Simpan $data ke dalam DB
-        DB::table('users')->insert($data);
+        // DB::table('users')->insert($data);
+        User::create($data);
         // Redirect response ke senarai user
         return redirect('/users');
     }
@@ -84,7 +87,8 @@ class UserController extends Controller
     public function edit($id)
     {
         // Dapatkan rekod user berdasarkan ID yang dibekalkan
-        $user = DB::table('users')->where('id', '=', $id)->first();
+        // $user = DB::table('users')->where('id', '=', $id)->first();
+        $user = User::find($id);
 
         return view('theme_user/edit', compact('user'));
     }
@@ -104,20 +108,19 @@ class UserController extends Controller
             'role' => 'required|in:admin,staff'
         ]);
 
-        // $data = $request->all();
-        $data = $request->only([
-            'name',
-            'email',
-            'role'
-        ]);
+        $data = $request->except('password');
+       
         // Encrypt Password dan kemudian attach kepada $data jika ruangan tidak kosong
         if (!empty($request->input('password')))
         {
-            $data['password'] = bcrypt($request->input('password'));
+            $data['password'] = $request->input('password');
         }
         
         // Simpan $data ke dalam DB
-        DB::table('users')->where('id', '=', $id)->update($data);
+        // DB::table('users')->where('id', '=', $id)->update($data);
+        $user = User::find($id);
+        $user->update($data);
+
         // Redirect response ke senarai user
         return redirect('/users');
     }
@@ -130,7 +133,9 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        DB::table('users')->where('id', '=', $id)->delete();
+        // DB::table('users')->where('id', '=', $id)->delete();
+        $user = User::find($id);
+        $user->delete();
 
         // Redirect response ke senarai user
         return redirect('/users');
