@@ -23,7 +23,7 @@ class UserController extends Controller
 
         // $senarai_users = DB::table('users')->get();
         // $senarai_users = DB::table('users')->paginate(5);
-        $senarai_users = User::paginate(5);
+        $senarai_users = User::orderBy('id', 'desc')->paginate(5);
 
         return view('theme_user/senarai', compact('senarai_users'));
     }
@@ -48,7 +48,7 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users,email',
             'password' => 'required|min:3|confirmed'
         ]);
 
@@ -104,7 +104,7 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'email' => 'required|email',
+            'email' => 'required|email|unique:users,email,'.$id,
             'role' => 'required|in:admin,staff'
         ]);
 
